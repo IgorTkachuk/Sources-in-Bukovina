@@ -132,4 +132,6 @@ app.MapGet("/", () => Results.Ok(new
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 app.Urls.Add($"http://*:{port}");
 
+builder.WebHost.UseUrls("http://0.0.0.0:10000");
+
 app.Run();
