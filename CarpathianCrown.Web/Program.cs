@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Localization;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<CarpathianCrown.Web.Models.ApiClient>();
+builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddHttpClient("api", client =>
 {
@@ -11,8 +13,7 @@ builder.Services.AddHttpClient("api", client =>
     client.Timeout = TimeSpan.FromSeconds(10);
 });
 
-builder.Services.AddScoped<CarpathianCrown.Web.Models.ApiClient>();
-builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddSession(opt =>
 {
     opt.Cookie.HttpOnly = true;
