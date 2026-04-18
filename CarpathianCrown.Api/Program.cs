@@ -129,8 +129,19 @@ app.MapGet("/", () => Results.Ok(new
     swagger = "/swagger"
 }));
 
+builder.Services.AddRazorPages();
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
+app.UseStaticFiles();
+app.UseRouting();
+
+builder.Services.AddControllersWithViews();
+
+app.UseStaticFiles();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 app.Run();
