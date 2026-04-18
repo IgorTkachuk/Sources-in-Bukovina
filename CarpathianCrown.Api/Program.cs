@@ -99,6 +99,9 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddControllersWithViews();
+
+
 var app = builder.Build();
 
 app.UseCors("web");
@@ -122,16 +125,12 @@ using (var scope = app.Services.CreateScope())
 
 app.UseSerilogRequestLogging();
 
-
-builder.Services.AddRazorPages();
-
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 app.UseStaticFiles();
 app.UseRouting();
 
-builder.Services.AddControllersWithViews();
 
 app.UseStaticFiles();
 
@@ -140,6 +139,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapDefaultControllerRoute();
-app.MapRazorPages();
 
 app.Run();
