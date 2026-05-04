@@ -1,7 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY . .
-WORKDIR /src/CarpathianCrown.Api
 RUN dotnet publish -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
@@ -14,4 +13,4 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY --from=build /app .
 
-ENTRYPOINT ["dotnet", "CarpathianCrown.Api.dll"]
+ENTRYPOINT ["dotnet", "CarpathianCrown.Web.dll"]
